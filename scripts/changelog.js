@@ -8,7 +8,7 @@ var gitSemverTags = require("git-semver-tags"),
     minimist      = require("minimist");
 
 var basedir = path.join(__dirname, "..");
-var pkg = require(basedir + "/package.json");
+var pkg = require(path.join(basedir, "package.json");
 
 var argv = minimist(process.argv, {
     alias: {
@@ -129,7 +129,7 @@ gitSemverTags(function(err, tags) {
         });
         var current;
         try {
-            current = fs.readFileSync(basedir + "/CHANGELOG.md").toString("utf8");
+            current = fs.readFileSync(path.join(basedir, "CHANGELOG.md")).toString("utf8");
         } catch (e) {
             current = "";
         }
@@ -143,7 +143,7 @@ gitSemverTags(function(err, tags) {
         }
         var contents = output.join("") + "\n" + current;
         if (argv.write)
-            fs.writeFileSync(basedir + "/CHANGELOG.md", contents, "utf8");
+            fs.writeFileSync(path.join(basedir, "CHANGELOG.md"), contents, "utf8");
         else
             process.stdout.write(contents);
     });
